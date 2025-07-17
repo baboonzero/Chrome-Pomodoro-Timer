@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Pomodoro Timer</h1>
+            <div class="timer-display">
+                <span id="minutes">25</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-ring">
+                <svg class="progress-svg" width="120" height="120">
+                    <circle class="progress-bg" cx="60" cy="60" r="54"></circle>
+                    <circle class="progress-fill" cx="60" cy="60" r="54"></circle>
+                </svg>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn" class="btn btn-primary">Start</button>
+            <button id="pauseBtn" class="btn btn-secondary" disabled>Pause</button>
+            <button id="resetBtn" class="btn btn-secondary">Reset</button>
+        </div>
+
+        <div class="presets">
+            <h3>Quick Presets</h3>
+            <div class="preset-buttons">
+                <button class="preset-btn" data-time="5">5m</button>
+                <button class="preset-btn" data-time="10">10m</button>
+                <button class="preset-btn" data-time="15">15m</button>
+                <button class="preset-btn active" data-time="25">25m</button>
+            </div>
+        </div>
+
+        <div class="custom-timer">
+            <h3>Custom Timer</h3>
+            <div class="custom-input">
+                <input type="number" id="customMinutes" placeholder="Minutes" min="1" max="999">
+                <button id="setCustomBtn" class="btn btn-secondary">Set</button>
+            </div>
+        </div>
+
+        <div class="status">
+            <span id="statusText">Ready to start</span>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

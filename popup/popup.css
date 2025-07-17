@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    width: 320px;
+    min-height: 420px;
+    max-height: 480px;
+    overflow: hidden;
+}
+
+.container {
+    padding: 14px 12px 10px 12px;
+    min-height: unset;
+    max-height: 480px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 6px;
+}
+
+.timer-display {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2d3748;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.progress-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 12px 0;
+    position: relative;
+}
+
+.progress-ring {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-svg {
+    transform: rotate(-90deg);
+}
+
+.progress-bg {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 8;
+}
+
+.progress-fill {
+    fill: none;
+    stroke: #667eea;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.btn-secondary {
+    background: #f7fafc;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.presets {
+    margin-bottom: 10px;
+}
+
+.presets h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.preset-btn {
+    padding: 6px 8px;
+    border: 2px solid #e2e8f0;
+    background: #f7fafc;
+    color: #4a5568;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.preset-btn:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+.preset-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.custom-timer {
+    margin-bottom: 8px;
+}
+
+.custom-timer h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+.custom-input {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.custom-input input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 2px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 13px;
+    background: #f7fafc;
+    color: #4a5568;
+    transition: border-color 0.2s ease;
+}
+
+.custom-input input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+}
+
+.custom-input input::placeholder {
+    color: #a0aec0;
+}
+
+.status {
+    text-align: center;
+    margin-top: 8px;
+    padding: 6px 0 0 0;
+}
+
+#statusText {
+    font-size: 13px;
+    color: #718096;
+    font-style: italic;
+}
+
+.debug-controls {
+    margin-bottom: 0;
+}
+
+/* Animation for timer completion */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.timer-complete {
+    animation: pulse 1s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .container {
+        padding: 10px;
+    }
+    .timer-display {
+        font-size: 28px;
+    }
+    .preset-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+} 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+        }
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .test-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .test-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        .test-btn:hover {
+            background: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Pomodoro Timer Test Page</h1>
+        <p>This page is designed to test the Pomodoro Timer extension overlay functionality. The overlay should appear in the top-right corner when the timer is running.</p>
+        
+        <p><strong>To test:</strong></p>
+        <ol>
+            <li>Make sure the Pomodoro Timer extension is installed and enabled</li>
+            <li>Click the extension icon in your browser toolbar</li>
+            <li>Start the timer from the popup</li>
+            <li>The overlay should appear on this page</li>
+        </ol>
+        
+        <p><strong>Debugging:</strong></p>
+        <ul>
+            <li>Open Chrome DevTools (F12)</li>
+            <li>Check the Console tab for debug messages</li>
+            <li>Look for messages starting with "[Pomodoro Overlay]" and "[Pomodoro Background]"</li>
+            <li>If the overlay doesn't appear, check for error messages</li>
+        </ul>
+        
+        <div class="test-buttons">
+            <button class="test-btn" onclick="testOverlay()">Test Overlay Creation</button>
+            <button class="test-btn" onclick="checkExtension()">Check Extension Status</button>
+        </div>
+    </div>
+
+    <script>
+        function testOverlay() {
+            console.log('Testing overlay creation...');
+            
+            // Check if overlay element exists
+            const overlay = document.getElementById('pomodoro-timer-overlay');
+            if (overlay) {
+                console.log('✅ Overlay element found:', overlay);
+                console.log('Overlay display:', overlay.style.display);
+                console.log('Overlay transform:', overlay.style.transform);
+                console.log('Overlay classes:', overlay.className);
+                console.log('Overlay visible:', overlay.classList.contains('visible'));
+            } else {
+                console.log('❌ Overlay element not found');
+            }
+            
+            // Check if content script is loaded
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                console.log('✅ Chrome runtime available');
+            } else {
+                console.log('❌ Chrome runtime not available');
+            }
+        }
+        
+        function checkExtension() {
+            console.log('Checking extension status...');
+            
+            // Try to send a message to the extension
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                chrome.runtime.sendMessage({ action: 'getState' })
+                    .then(response => {
+                        console.log('✅ Extension responded:', response);
+                    })
+                    .catch(error => {
+                        console.log('❌ Extension not responding:', error);
+                    });
+            } else {
+                console.log('❌ Chrome runtime not available');
+            }
+        }
+        
+        // Log when page loads
+        console.log('Test page loaded');
+        console.log('Look for Pomodoro Timer extension debug messages in the console');
+    </script>
+</body>
+</html> 
